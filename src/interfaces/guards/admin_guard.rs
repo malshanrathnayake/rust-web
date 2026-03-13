@@ -1,7 +1,7 @@
 use rocket::request::{FromRequest, Outcome};
 use rocket::{Request, http::Status};
 
-use crate::guards::auth_guard::AuthenticatedUser;
+use crate::interfaces::guards::auth_guard::AuthenticatedUser;
 
 pub struct AuthorizedUser(pub AuthenticatedUser);
 

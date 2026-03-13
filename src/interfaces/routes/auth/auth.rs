@@ -2,7 +2,7 @@ use rocket::{Route, form::Form};
 use rocket::response::Redirect;
 use rocket_dyn_templates::{Template};
 
-use crate::application::controllers::auth_controllers::auth_controller;
+use crate::interfaces::controllers::auth_controllers::auth_controller;
 use crate::domain::entities::system::login;
 
 #[get("/login")]

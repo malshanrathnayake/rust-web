@@ -1,6 +1,6 @@
 use rocket::Route;
 use rocket_dyn_templates::{context, Template};
-use crate::guards::admin_guard::AuthorizedUser;
+use crate::interfaces::guards::admin_guard::AuthorizedUser;
 
 #[get("/")]
 pub fn index(_authorized_user: AuthorizedUser) -> Template {

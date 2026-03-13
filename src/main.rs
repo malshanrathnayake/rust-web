@@ -3,7 +3,6 @@ extern crate rocket;
 
 mod domain;
 mod interfaces;
-mod guards;
 mod catchers;
 
 use rocket_dyn_templates::Template;
