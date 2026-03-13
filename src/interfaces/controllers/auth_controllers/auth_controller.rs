@@ -3,13 +3,13 @@ use rocket::response::Redirect;
 use rocket_dyn_templates::{Template, context};
 use std::collections::HashMap;
 
-use crate::models::auth_models::login_form;
+use crate::domain::entities::system::login;
 
 pub fn login_page() -> Template {
     Template::render("auth/login", context! {errors: Option::<HashMap<&str, &str>>::None})
 }
 
-pub fn login(form: Form<login_form::LoginForm>) -> Result<Redirect, Template> {
+pub fn login_post(form: Form<login::Login>) -> Result<Redirect, Template> {
     
     let data = form.into_inner();
     let mut errors = data.validate();

@@ -3,12 +3,12 @@ use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
 
 #[derive(FromForm, Serialize, Deserialize)]
-pub struct LoginForm {
+pub struct Login {
     pub username: String,
     pub password: String,
 }
 
-impl LoginForm {
+impl Login {
     pub fn validate(&self) -> HashMap<&str, &str> {
         let mut errors = HashMap::new();
 

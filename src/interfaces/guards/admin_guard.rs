@@ -1,17 +1,19 @@
 use rocket::request::{FromRequest, Outcome};
 use rocket::{Request, http::Status};
 
-use crate::guards::auth_guard::AuthUser;
+use crate::guards::auth_guard::AuthenticatedUser;
 
-pub struct AdminUser(pub AuthUser);
+pub struct AuthorizedUser(pub AuthenticatedUser);
 
 #[rocket::async_trait]
-impl<'r> FromRequest<'r> for AdminUser {
+impl<'r> FromRequest<'r> for AuthorizedUser {
     type Error = ();
 
     async fn from_request(req: &'r Request<'_>) -> Outcome<Self, Self::Error> {
 
-        let user = match req.guard::<AuthUser>().await {
+        let auth_result = req.guard::<AuthenticatedUser>().await;
+
+        let user = match auth_result {
             Outcome::Success(user) => user,
             _ => return Outcome::Error((Status::Unauthorized, ())),
         };
@@ -20,6 +22,6 @@ impl<'r> FromRequest<'r> for AdminUser {
             return Outcome::Error((Status::Forbidden, ()));
         }
 
-        Outcome::Success(AdminUser(user))
+        Outcome::Success(AuthorizedUser(user))
     }
 }

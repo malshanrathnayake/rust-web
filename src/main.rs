@@ -1,13 +1,13 @@
 #[macro_use]
 extern crate rocket;
 
-mod models;
-mod routes;
-mod controllers;
+mod domain;
+mod interfaces;
 mod guards;
 mod catchers;
 
 use rocket_dyn_templates::Template;
+use crate::interfaces::routes;
 
 #[launch]
 fn rocket() -> _ {
