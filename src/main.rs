@@ -2,6 +2,8 @@
 extern crate rocket;
 
 mod routes;
+mod guards;
+mod catchers;
 
 use rocket_dyn_templates::Template;
 
@@ -11,6 +13,7 @@ fn rocket() -> _ {
         .mount("/", routes::public_routes())
         .mount("/auth", routes::auth_routes())
         .mount("/admin", routes::admin_routes())
+        .register("/", catchers![catchers::auth_catcher::unauthorized, catchers::auth_catcher::forbidden])
         .mount("/static", rocket::fs::FileServer::from("static"))
         .attach(Template::fairing())
 }
