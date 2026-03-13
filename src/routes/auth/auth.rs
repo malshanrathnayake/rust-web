@@ -2,26 +2,17 @@ use rocket::{Route, form::Form};
 use rocket::response::Redirect;
 use rocket_dyn_templates::{context, Template};
 
-#[derive(FromForm)]
-pub struct LoginForm {
-    pub username: String,
-    pub password: String,
-}
+use crate::controllers::auth_controllers::auth_controller;
+use crate::models::auth_models::login_form;
 
 #[get("/login")]
 pub fn login_page() -> Template {
-    Template::render("auth/login", context! {})
+    auth_controller::login_page()
 }
 
 #[post("/login", data = "<form>")]
-pub fn login(form: Form<LoginForm>) -> Redirect {
-    let data = form.into_inner();
-
-    if data.username == "admin" && data.password == "1234" {
-        Redirect::to("/admin/")
-    } else {
-        Redirect::to("/auth/login")
-    }
+pub fn login(form: Form<login_form::LoginForm>) -> Result<Redirect, Template> {
+    auth_controller::login(form)
 }
 
 pub fn routes() -> Vec<Route> {

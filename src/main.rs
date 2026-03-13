@@ -1,7 +1,9 @@
 #[macro_use]
 extern crate rocket;
 
+mod models;
 mod routes;
+mod controllers;
 mod guards;
 mod catchers;
 

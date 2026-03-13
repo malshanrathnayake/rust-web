@@ -1,12 +1,22 @@
 <form action="/auth/login" method="post">
     <div>
         <label>Username</label>
-        <input type="text" name="username">
+        <input type="text" name="username" value="{{ data.username | default(value='') }}">
+        <span class="text-danger">
+            {% if errors and errors.username %}
+                {{ errors.username }}
+            {% endif %}
+        </span>
     </div>
 
     <div>
         <label>Password</label>
         <input type="password" name="password">
+        <span class="text-danger">
+            {% if errors and errors.password %}
+                {{ errors.password }}
+            {% endif %}
+        </span>
     </div>
 
     <button type="submit">Login</button>
