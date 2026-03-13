@@ -47,21 +47,22 @@
 
 <body>
 
-  {% include "demo/sidebar" %}
+  {% include "components/sidebar" %}
 
   <div class="wrapper d-flex flex-column min-vh-100">
     <header class="header header-sticky p-0 mb-4">
 
-      {% include "demo/header" %}
+      {% include "components/header" %}
 
-      {% include "demo/breadcrumb" %}
+      {% set title = "Test" %}
+      {% include "components/breadcrumb" %}
 
 
     </header>
 
     {% block body %}{% endblock %}
 
-    {% include "demo/footer" %}
+    {% include "components/footer" %}
 
   </div>
   <!-- CoreUI and necessary plugins-->

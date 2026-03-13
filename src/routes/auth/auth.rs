@@ -18,9 +18,9 @@ pub fn login(form: Form<LoginForm>) -> Redirect {
     let data = form.into_inner();
 
     if data.username == "admin" && data.password == "1234" {
-        Redirect::to("/admin")
+        Redirect::to("/admin/")
     } else {
-        Redirect::to("/login")
+        Redirect::to("/auth/login")
     }
 }
 

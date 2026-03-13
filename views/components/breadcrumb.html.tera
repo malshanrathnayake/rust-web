@@ -5,6 +5,8 @@
       </li>
       <li class="breadcrumb-item active"><span>Dashboard</span>
       </li>
+      <li class="breadcrumb-item active"><span>{{ title }}</span>
+      </li>
     </ol>
   </nav>
 </div>

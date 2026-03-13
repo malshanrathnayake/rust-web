@@ -4,7 +4,7 @@ use crate::guards::admin_guard::AdminUser;
 
 #[get("/")]
 pub fn index(_admin: AdminUser) -> Template {
-    Template::render("demo/body", context! {})
+    Template::render("admin/index", context! {})
 }
 
 pub fn routes() -> Vec<Route> {

@@ -1,0 +1,9 @@
+{% extends "layout/main_layout" %}
+
+{% block body %}
+
+<h1>Public Website</h1>
+<p>Welcome to the public website!</p>
+<a href="/auth/login">Login</a>
+
+{% endblock %}

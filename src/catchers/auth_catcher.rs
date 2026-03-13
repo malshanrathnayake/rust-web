@@ -10,3 +10,8 @@ pub fn unauthorized(_req: &Request) -> Template {
 pub fn forbidden(_req: &Request) -> Template {
     Template::render("errors/403", context! {})
 }
+
+#[catch(404)]
+pub fn not_found(_req: &Request) -> Template {
+    Template::render("errors/404", context! {})
+}

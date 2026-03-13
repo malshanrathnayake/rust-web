@@ -13,7 +13,7 @@ fn rocket() -> _ {
         .mount("/", routes::public_routes())
         .mount("/auth", routes::auth_routes())
         .mount("/admin", routes::admin_routes())
-        .register("/", catchers![catchers::auth_catcher::unauthorized, catchers::auth_catcher::forbidden])
+        .register("/", catchers![catchers::auth_catcher::unauthorized, catchers::auth_catcher::forbidden, catchers::auth_catcher::not_found])
         .mount("/static", rocket::fs::FileServer::from("static"))
         .attach(Template::fairing())
 }
