@@ -1,13 +1,13 @@
+use crate::domain::entities::system::user::User;
 use crate::domain::repositories::system::user_repository::UserRepository;
 
-pub struct UserService<R: UserRepository> {
-    pub user_repository: R,
+pub struct UserService<'a> {
+    pub user_repository: &'a mut (dyn UserRepository + Send),
 }
 
-impl<R: UserRepository> UserService<R> {
+impl<'a> UserService<'a> {
 
-    pub fn get_user_by_email(&self, email: &str) -> Option<User> {
-        let user = self.user_repository.get_user_by_email(email);
-        return user
+    pub async fn get_user_by_email(&mut self, email: &str) -> Option<User> {
+        self.user_repository.get_user_by_email(email).await
     }
 }

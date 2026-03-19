@@ -6,13 +6,13 @@ use crate::interfaces::controllers::auth_controllers::auth_controller;
 use crate::domain::entities::system::login;
 
 #[get("/login")]
-pub fn login_page() -> Template {
-    auth_controller::login_page()
+pub async fn login_page() -> Template {
+    auth_controller::login_page().await
 }
 
 #[post("/login", data = "<form>")]
-pub fn login_post(form: Form<login::Login>) -> Result<Redirect, Template> {
-    auth_controller::login_post(form)
+pub async fn login_post(form: Form<login::Login>) -> Result<Redirect, Template> {
+    auth_controller::login_post(form).await
 }
 
 pub fn routes() -> Vec<Route> {

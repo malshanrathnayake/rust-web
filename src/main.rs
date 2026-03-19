@@ -5,6 +5,7 @@ mod domain;
 mod interfaces;
 mod catchers;
 mod infrastructure;
+mod application;
 
 use rocket_dyn_templates::Template;
 use crate::interfaces::routes;
